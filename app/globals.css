@@ -16,6 +16,7 @@
   --theme-warning: 251 191 36;
   --theme-overlay: 255 255 255;
   --theme-shadow: 2 6 23;
+  --logo-filter: none;
   --background: var(--theme-bg);
   --surface: var(--theme-surface);
   --brand: var(--theme-brand);
@@ -328,6 +329,7 @@ a {
   line-height: 1.05;
   font-weight: 800;
   letter-spacing: -0.03em;
+  color: rgb(255 255 255);
   text-shadow: 0 6px 18px rgb(var(--theme-shadow)/0.36);
 }
 
@@ -489,9 +491,9 @@ a {
   @apply relative grid grid-cols-[56px_minmax(0,1fr)] gap-5 overflow-hidden rounded-[24px] border p-4 transition duration-300 md:p-5;
   background: linear-gradient(180deg, rgb(var(--theme-overlay)/0.025), rgb(var(--theme-overlay)/0));
   border-color: rgb(var(--theme-overlay)/0.04);
-  opacity: 0.52;
+  opacity: 0.9;
   transform: translateY(22px) scale(0.985);
-  filter: saturate(0.75);
+  filter: saturate(0.92);
 }
 
 .process-step:hover {
@@ -499,7 +501,7 @@ a {
 }
 
 .process-step--visible {
-  opacity: 0.72;
+  opacity: 1;
   transform: translateY(0) scale(1);
 }
 
@@ -534,9 +536,10 @@ a {
 .process-step-visual-image {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   transform: scale(1.02);
 }
 
@@ -546,12 +549,12 @@ a {
   background:
     linear-gradient(
       90deg,
-      rgb(var(--theme-bg)/0.1) 0%,
-      rgb(var(--theme-bg)/0.18) 20%,
-      rgb(var(--theme-bg)/0.72) 66%,
-      rgb(var(--theme-bg)/0.98) 100%
+      rgb(var(--theme-shadow)/0.06) 0%,
+      rgb(var(--theme-shadow)/0.14) 20%,
+      rgb(var(--theme-shadow)/0.45) 66%,
+      rgb(var(--theme-shadow)/0.7) 100%
     ),
-    linear-gradient(180deg, rgb(var(--theme-brand)/0.08), rgb(var(--theme-shadow)/0.08));
+    linear-gradient(180deg, rgb(var(--theme-brand)/0.05), rgb(var(--theme-shadow)/0.14));
 }
 
 .process-step-rail {
@@ -643,11 +646,11 @@ a {
     background:
       linear-gradient(
         180deg,
-        rgb(var(--theme-bg)/0.08) 0%,
-        rgb(var(--theme-bg)/0.48) 40%,
-        rgb(var(--theme-bg)/0.98) 100%
+        rgb(var(--theme-shadow)/0.06) 0%,
+        rgb(var(--theme-shadow)/0.36) 40%,
+        rgb(var(--theme-shadow)/0.68) 100%
       ),
-      linear-gradient(90deg, rgb(var(--theme-brand)/0.08), rgb(var(--theme-shadow)/0.05));
+      linear-gradient(90deg, rgb(var(--theme-brand)/0.05), rgb(var(--theme-shadow)/0.12));
   }
 
   .process-step--active .process-step-rail,

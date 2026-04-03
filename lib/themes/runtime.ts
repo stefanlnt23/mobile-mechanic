@@ -2,6 +2,7 @@ import type { WebsiteTheme } from './types'
 import { defaultTheme, themesById } from './catalog'
 
 export const THEME_STORAGE_KEY = 'mobile-mechanic-theme'
+export const THEME_STORAGE_VARS_KEY = 'mobile-mechanic-theme-vars'
 
 const SHADE_STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] as const
 
@@ -135,6 +136,7 @@ export function toThemeCssVariables(theme: WebsiteTheme): Record<string, string>
     '--theme-warning': rgbToChannels(mix(brand, [251, 191, 36], 0.45)),
     '--theme-overlay': rgbToChannels(overlayBase),
     '--theme-shadow': rgbToChannels(mix(bg, [0, 0, 0], 0.45)),
+    '--logo-filter': isDark ? 'none' : 'invert(1)',
     '--white': rgbToChannels(contrastBase),
     '--black': rgbToChannels(inverseBase),
     '--background': rgbToChannels(bg),
@@ -182,4 +184,10 @@ export function applyTheme(themeId: string | null | undefined) {
   for (const [key, value] of Object.entries(vars)) {
     root.style.setProperty(key, value)
   }
+}
+
+export function serializeThemeCssVariables(themeId: string | null | undefined) {
+  const theme = resolveTheme(themeId)
+  const vars = toThemeCssVariables(theme)
+  return JSON.stringify({ themeId: theme.id, vars })
 }

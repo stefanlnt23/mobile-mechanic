@@ -2,7 +2,13 @@
 
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { allThemes, defaultThemeId } from "@/lib/themes";
-import { applyTheme, resolveTheme, THEME_STORAGE_KEY } from "@/lib/themes/runtime";
+import {
+  applyTheme,
+  resolveTheme,
+  serializeThemeCssVariables,
+  THEME_STORAGE_KEY,
+  THEME_STORAGE_VARS_KEY
+} from "@/lib/themes/runtime";
 
 type ThemeContextValue = {
   themeId: string;
@@ -22,6 +28,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const resolved = resolveTheme(stored).id;
     setThemeIdState(resolved);
     applyTheme(resolved);
+    window.localStorage.setItem(THEME_STORAGE_VARS_KEY, serializeThemeCssVariables(resolved));
   }, []);
 
   const setThemeId = (nextThemeId: string) => {
@@ -29,6 +36,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setThemeIdState(resolved);
     window.localStorage.setItem(THEME_STORAGE_KEY, resolved);
     applyTheme(resolved);
+    window.localStorage.setItem(THEME_STORAGE_VARS_KEY, serializeThemeCssVariables(resolved));
   };
 
   const value = useMemo(

@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { MobileStickyBar } from "@/components/mobile-sticky-bar";
 import { SITE, serviceCities } from "@/lib/site-data";
+import { THEME_STORAGE_KEY, THEME_STORAGE_VARS_KEY } from "@/lib/themes/runtime";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -63,8 +64,33 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const themeBootScript = `
+    try {
+      var root = document.documentElement;
+      var themeId = window.localStorage.getItem(${JSON.stringify(THEME_STORAGE_KEY)});
+      var snapshotRaw = window.localStorage.getItem(${JSON.stringify(THEME_STORAGE_VARS_KEY)});
+      if (themeId) {
+        root.dataset.theme = themeId;
+      }
+      if (snapshotRaw) {
+        var snapshot = JSON.parse(snapshotRaw);
+        if (snapshot && snapshot.themeId && snapshot.vars) {
+          root.dataset.theme = snapshot.themeId;
+          for (var key in snapshot.vars) {
+            if (Object.prototype.hasOwnProperty.call(snapshot.vars, key)) {
+              root.style.setProperty(key, snapshot.vars[key]);
+            }
+          }
+        }
+      }
+    } catch (e) {}
+  `;
+
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
+      </head>
       <body className={inter.className}>
         <ThemeProvider>
           <SiteHeader />

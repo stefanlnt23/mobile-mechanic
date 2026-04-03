@@ -2,43 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SITE, navItems } from "@/lib/site-data";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
-  const [logoDark, setLogoDark] = useState(false);
-
-  useEffect(() => {
-    const updateLogoTone = () => {
-      const rootStyles = window.getComputedStyle(document.documentElement);
-      const surfaceRaw = rootStyles.getPropertyValue("--theme-surface").trim();
-      const channels = surfaceRaw
-        .split(/\s+/)
-        .map((value) => Number(value))
-        .filter((value) => Number.isFinite(value));
-
-      if (channels.length !== 3) {
-        setLogoDark(false);
-        return;
-      }
-
-      const [r, g, b] = channels;
-      const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
-      setLogoDark(luminance > 0.58);
-    };
-
-    updateLogoTone();
-
-    const observer = new MutationObserver(updateLogoTone);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["style", "data-theme"],
-    });
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <header className="sticky top-0 z-50 border-b border-[rgb(var(--theme-overlay)/0.12)] bg-[rgb(var(--theme-surface)/0.86)] backdrop-blur-md">
@@ -50,7 +19,7 @@ export function SiteHeader() {
               alt={`${SITE.name} logo`}
               fill
               sizes="150px"
-              className={`object-contain object-left ${logoDark ? "invert" : ""}`}
+              className="object-contain object-left [filter:var(--logo-filter,none)] transition-[filter] duration-300"
               priority
             />
           </span>

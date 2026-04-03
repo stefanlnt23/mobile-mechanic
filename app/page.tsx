@@ -4,9 +4,9 @@ import type { Metadata } from "next";
 import { ProcessTimeline } from "@/components/process-timeline";
 import { TestimonialSlider } from "@/components/testimonial-slider";
 import { SITE } from "@/lib/site-data";
-import detailingHomeImage from "@/photo/car-detaling-home-page.png";
-import homeHeaderImage from "@/photo/home-header.png";
-import mechanicHomeImage from "@/photo/car-mobile-mechanic-home-page.png";
+import detailingHomeImage from "@/photo/car-detaling-home-page.webp";
+import homeHeaderImage from "@/photo/home-header.webp";
+import mechanicHomeImage from "@/photo/car-mobile-mechanic-home-page.webp";
 
 const serviceCards = [
   {
@@ -87,6 +87,7 @@ export default function HomePage() {
           src={homeHeaderImage}
           alt="Precision Auto Care mobile mechanic and detailing service at a driveway"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />
@@ -167,6 +168,7 @@ export default function HomePage() {
                   src={homeHeaderImage}
                   alt="Precision Auto Care mobile mechanic and detailing service at a driveway"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 48vw"
                   className="object-cover"
                 />
               </div>
@@ -274,6 +276,7 @@ export default function HomePage() {
                     src={card.image}
                     alt={card.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 46vw"
                     className="object-cover transition duration-700 group-hover:scale-105"
                   />
                   <div className="service-door-media-overlay" />

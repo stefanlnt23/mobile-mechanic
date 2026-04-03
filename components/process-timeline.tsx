@@ -1,34 +1,39 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import step1Image from "@/photo/4 steps photos/step1.webp";
+import step2Image from "@/photo/4 steps photos/step2.webp";
+import step3Image from "@/photo/4 steps photos/step3.webp";
+import step4Image from "@/photo/4 steps photos/step4.webp";
 
 const processSteps = [
   {
     title: "Tell Us What You Need",
     description: "Tell us what you need - it takes seconds.",
     proof: "No call required. No commitment.",
-    image: "/photo/4 steps photos/step1.png",
+    image: step1Image,
     icon: SmartphoneIcon
   },
   {
     title: "Get a Clear Quote",
     description: "Transparent price, no surprises.",
     proof: "Fixed before any work starts.",
-    image: "/photo/4 steps photos/step2.png",
+    image: step2Image,
     icon: QuoteIcon
   },
   {
     title: "We Come to You",
     description: "Fully equipped, wherever you are.",
     proof: "No towing. No waiting rooms.",
-    image: "/photo/4 steps photos/step3.png",
+    image: step3Image,
     icon: VanIcon
   },
   {
     title: "Drive Away Happy",
     description: "Done right, ready to go.",
     proof: "Work backed by guarantee.",
-    image: "/photo/4 steps photos/step4.png",
+    image: step4Image,
     icon: SparkCheckIcon
   }
 ];
@@ -47,6 +52,36 @@ export function ProcessTimeline() {
   const [visibleSteps, setVisibleSteps] = useState<number[]>([]);
   const [indicatorTop, setIndicatorTop] = useState(28);
   const [scrollActiveIndex, setScrollActiveIndex] = useState(0);
+  const hasPreloadedRef = useRef(false);
+
+  useEffect(() => {
+    const preloadImages = () => {
+      if (hasPreloadedRef.current) return;
+      hasPreloadedRef.current = true;
+
+      for (const step of processSteps) {
+        const img = new window.Image();
+        img.decoding = "async";
+        img.src = step.image.src;
+      }
+    };
+
+    const target = containerRef.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          preloadImages();
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "900px 0px" }
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -165,9 +200,14 @@ export function ProcessTimeline() {
             >
               {isActive ? (
                 <div className="process-step-visual" aria-hidden="true">
-                  <div
+                  <Image
+                    src={step.image}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 100vw, 32vw"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    quality={72}
                     className="process-step-visual-image"
-                    style={{ backgroundImage: `url("${step.image}")` }}
                   />
                   <div className="process-step-visual-fade" />
                 </div>
