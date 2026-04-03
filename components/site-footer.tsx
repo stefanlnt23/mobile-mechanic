@@ -12,7 +12,7 @@ export function SiteFooter() {
             Expert mechanical repairs and premium detailing at your doorstep.
           </p>
           <p className="text-sm text-slate-300">
-            Fully Mobile Service operating in the West Midlands.
+            Fully mobile service operating across the West Midlands.
           </p>
         </div>
         <div className="space-y-3 text-sm">
@@ -59,7 +59,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="container-max mt-10 border-t border-slate-800 pt-5 text-xs text-slate-400">
-        © {new Date().getFullYear()} {SITE.name}. All rights reserved.
+        &copy; {new Date().getFullYear()} {SITE.name}. All rights reserved.
       </div>
     </footer>
   );

@@ -10,7 +10,7 @@ const config: Config = {
       colors: {
         background: "#070b12",
         surface: "#0f172a",
-        brand: "#1d4ed8",
+        brand: "#f97316",
         whatsapp: "#22c55e",
         ink: "#e2e8f0",
         muted: "#94a3b8"

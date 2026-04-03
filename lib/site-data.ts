@@ -1,5 +1,5 @@
 export const SITE = {
-  name: "Premium Mobile Mechanic & Detailing",
+  name: "Precision Auto Care",
   domain: "https://www.yourdomain.com",
   phoneDisplay: "07000 000000",
   phoneHref: "tel:+447000000000",
@@ -31,27 +31,36 @@ export const navItems = [
 ];
 
 export const trustPills = [
-  "⭐ 5.0 Rated on Google",
-  "🛠️ 20+ Years Experience",
-  "🚐 Fully Mobile Service",
-  "💷 No Hidden Costs"
+  "5.0 Rated on Google",
+  "20+ Years Experience",
+  "Fully Mobile Service",
+  "Transparent Pricing"
 ];
 
 export const testimonials = [
   {
     quote:
-      "Excellent service by the team. Car looks brand new inside and out. Highly recommended! They arrived exactly on time to my home in Coventry.",
-    author: "J. Patel, Coventry"
+      "Booked them for a full detail and ceramic protection. The gloss was unreal, the paint felt silky, and the whole experience felt far more premium than dropping the car at a shop.",
+    author: "James Patel",
+    initials: "JP",
+    location: "Coventry",
+    age: "2 weeks ago"
   },
   {
     quote:
-      "Michael was tremendous from start to finish. He was extremely thorough in explaining the brake work needed and carried it out quickly on my driveway.",
-    author: "L. Thompson, Solihull"
+      "They diagnosed my brake issue on the driveway, explained everything clearly, and had the repair sorted the same afternoon. Honest, calm, and incredibly convenient.",
+    author: "Lauren Thompson",
+    initials: "LT",
+    location: "Solihull",
+    age: "1 month ago"
   },
   {
     quote:
-      "Super impressed by the professionalism. Had a ceramic coating applied outside my house, and the finish quality is exceptional. I wouldn't look elsewhere.",
-    author: "R. Hughes, Birmingham"
+      "I used Precision Auto Care for paint correction before selling my car and it completely changed how the vehicle presented. Clean process, punctual arrival, and flawless finish.",
+    author: "Ryan Hughes",
+    initials: "RH",
+    location: "Birmingham",
+    age: "3 weeks ago"
   }
 ];
 

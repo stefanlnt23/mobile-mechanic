@@ -11,7 +11,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md">
       <div className="container-max flex h-16 items-center justify-between">
         <Link href="/" className="text-sm font-bold tracking-wide text-slate-100 md:text-base">
-          Premium Mobile Auto
+          {SITE.name}
         </Link>
         <nav className="hidden items-center gap-5 md:flex">
           {navItems.slice(0, 7).map((item) => (
@@ -46,10 +46,10 @@ export function SiteHeader() {
         <div id="mobile-menu" className="border-t border-slate-800 bg-slate-950 md:hidden">
           <div className="container-max grid gap-3 py-4">
             <a href={SITE.phoneHref} className="btn-primary">
-              📞 {SITE.phoneDisplay}
+              Call {SITE.phoneDisplay}
             </a>
             <a href={SITE.whatsappHref} className="btn-whatsapp">
-              💬 WhatsApp
+              WhatsApp
             </a>
             {navItems.map((item) => (
               <Link
