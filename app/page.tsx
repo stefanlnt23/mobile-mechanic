@@ -64,6 +64,12 @@ const trustHighlights = [
   }
 ];
 
+const heroFeatureCards = [
+  { value: "No Garage Visits", label: "we come to you" },
+  { value: "Clear Pricing Upfront", label: "quotes before work starts" },
+  { value: "Fully Mobile Setup", label: "repairs and detailing on site" }
+];
+
 export const metadata: Metadata = {
   title: "Precision Auto Care | Mobile Mechanic & Detailing",
   description:
@@ -76,10 +82,41 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <section className="section-pad overflow-hidden">
+      <section className="relative h-[60vh] min-h-[520px] max-h-[700px] w-full overflow-hidden lg:hidden">
+        <Image
+          src={homeHeaderImage}
+          alt="Precision Auto Care mobile mechanic and detailing service at a driveway"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[rgb(var(--theme-bg))/0.96] via-[rgb(var(--theme-bg))/0.62] to-[rgb(var(--theme-bg))/0.12]" />
+        <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-8">
+          <div className="mb-4 inline-flex items-center rounded-full border border-orange-400/30 bg-[rgb(var(--theme-bg))/0.42] px-3.5 py-2 text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-orange-200 backdrop-blur-sm">
+            <span className="mr-2 inline-block h-2 w-2 rounded-full bg-orange-300" />
+            Precision Auto Care
+          </div>
+          <h1 className="text-4xl font-bold leading-[1.02] text-white">
+            Expert mobile mechanics and detailing without leaving your driveway.
+          </h1>
+          <p className="mt-3 max-w-xl text-base leading-7 text-slate-200">
+            Diagnostics, repairs, and showroom-level detailing delivered to your home or workplace with clear pricing and no hassle.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <a href={SITE.phoneHref} className="btn-primary shadow-[0_10px_24px_rgb(var(--theme-brand)/0.28)]">
+              Call Now
+            </a>
+            <a href={SITE.whatsappHref} className="btn-outline">
+              WhatsApp
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-pad hidden overflow-hidden lg:block">
         <div className="container-max grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="space-y-7">
-            <div className="inline-flex items-center rounded-full border border-orange-400/25 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-orange-200 shadow-[0_0_30px_rgba(249,115,22,0.16)]">
+            <div className="inline-flex items-center rounded-full border border-orange-400/25 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-orange-200 shadow-[0_0_30px_rgb(var(--theme-brand)/0.16)]">
               Precision Auto Care
             </div>
             <div className="space-y-5">
@@ -92,7 +129,7 @@ export default function HomePage() {
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <a href={SITE.phoneHref} className="btn-primary shadow-[0_18px_40px_rgba(249,115,22,0.32)]">
+              <a href={SITE.phoneHref} className="btn-primary shadow-[0_18px_40px_rgb(var(--theme-brand)/0.32)]">
                 Call Now
               </a>
               <a href={SITE.whatsappHref} className="btn-outline">
@@ -110,11 +147,7 @@ export default function HomePage() {
               <span>Trusted across Coventry & Birmingham</span>
             </div>
             <div className="grid gap-3 sm:grid-cols-3">
-              {[
-                { value: "No Garage Visits", label: "we come to you" },
-                { value: "Clear Pricing Upfront", label: "quotes before work starts" },
-                { value: "Fully Mobile Setup", label: "repairs and detailing on site" }
-              ].map((item) => (
+              {heroFeatureCards.map((item) => (
                 <div
                   key={item.label}
                   className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur-sm"
@@ -135,7 +168,6 @@ export default function HomePage() {
                   alt="Precision Auto Care mobile mechanic and detailing service at a driveway"
                   fill
                   className="object-cover"
-                  priority
                 />
               </div>
               <div className="hero-visual-overlay" />
@@ -151,8 +183,36 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="pb-12">
-        <div className="container-max grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+      <section className="pb-12 pt-5 lg:pt-0">
+        <div className="container-max md:hidden">
+          <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {trustHighlights.map((item, index) => {
+              const Icon = item.icon;
+
+              return (
+                <div
+                  key={item.label}
+                  className={`inline-flex shrink-0 items-center gap-2 rounded-full border px-3 py-2 text-sm font-semibold text-slate-100 ${
+                    index === 0
+                      ? "border-orange-300/35 bg-orange-500/10"
+                      : "border-white/10 bg-white/[0.04]"
+                  }`}
+                >
+                  <span
+                    className={`inline-flex h-8 w-8 items-center justify-center rounded-full ${
+                      index === 0 ? "bg-orange-300/20 text-orange-200" : "bg-white/10 text-slate-200"
+                    }`}
+                  >
+                    <Icon />
+                  </span>
+                  <span className="whitespace-nowrap text-[0.95rem]">{item.label}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="container-max hidden gap-3 md:grid md:grid-cols-2 xl:grid-cols-4">
           {trustHighlights.map((item, index) => {
             const Icon = item.icon;
 
@@ -170,6 +230,30 @@ export default function HomePage() {
               </div>
             );
           })}
+        </div>
+
+        <div className="container-max mt-3 grid grid-cols-2 gap-2 md:hidden">
+          {heroFeatureCards.map((item) => (
+            <div
+              key={item.label}
+              className="rounded-2xl border border-white/10 bg-white/[0.04] px-3 py-3 backdrop-blur-sm"
+            >
+              <p className="text-[1.02rem] font-semibold leading-snug text-white">{item.value}</p>
+              <p className="mt-1 text-xs leading-5 text-slate-400">{item.label}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="container-max mt-4 hidden gap-3 md:grid lg:hidden">
+          {heroFeatureCards.map((item) => (
+            <div
+              key={item.label}
+              className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-4 backdrop-blur-sm"
+            >
+              <p className="text-xl font-semibold text-white">{item.value}</p>
+              <p className="mt-1 text-sm text-slate-400">{item.label}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -302,7 +386,7 @@ export default function HomePage() {
               </h2>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href={SITE.phoneHref} className="btn-primary shadow-[0_18px_40px_rgba(249,115,22,0.32)]">
+              <a href={SITE.phoneHref} className="btn-primary shadow-[0_18px_40px_rgb(var(--theme-brand)/0.32)]">
                 Call {SITE.phoneDisplay}
               </a>
               <Link href="/pricing" className="btn-outline">
@@ -468,3 +552,5 @@ function PoundBadgeIcon() {
     </svg>
   );
 }
+
+

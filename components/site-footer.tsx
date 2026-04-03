@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { SITE, serviceCities } from "@/lib/site-data";
 import { toTitleCaseCity } from "@/lib/utils";
@@ -7,7 +8,19 @@ export function SiteFooter() {
     <footer className="border-t border-slate-800 bg-slate-950 pb-24 pt-14 md:pb-10">
       <div className="container-max grid gap-10 md:grid-cols-4">
         <div className="space-y-3">
-          <p className="text-lg font-semibold text-white">{SITE.name}</p>
+          <div className="flex items-center gap-3">
+            <Image
+              src="/images/logo.svg"
+              alt={`${SITE.name} logo`}
+              width={240}
+              height={84}
+              className="h-12 w-auto"
+            />
+            <div>
+              <p className="text-lg font-semibold text-white">{SITE.name}</p>
+              <p className="text-xs uppercase tracking-[0.16em] text-slate-400">{SITE.tagline}</p>
+            </div>
+          </div>
           <p className="text-sm text-slate-300">
             Expert mechanical repairs and premium detailing at your doorstep.
           </p>
@@ -47,9 +60,13 @@ export function SiteFooter() {
           <a href={SITE.phoneHref} className="block text-slate-300 hover:text-white">
             {SITE.phoneDisplay}
           </a>
+          <a href={SITE.whatsappHref} className="block text-slate-300 hover:text-white">
+            WhatsApp
+          </a>
           <a href={`mailto:${SITE.email}`} className="block text-slate-300 hover:text-white">
             {SITE.email}
           </a>
+          <p className="text-slate-300">{SITE.addressLine}</p>
           <Link href="/faq" className="block text-slate-300 hover:text-white">
             FAQ
           </Link>
@@ -64,3 +81,5 @@ export function SiteFooter() {
     </footer>
   );
 }
+
+

@@ -134,7 +134,7 @@ function ReviewCard({
   testimonial: (typeof testimonials)[number];
 }) {
   return (
-    <article className="group h-full rounded-[28px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-5 shadow-[0_18px_40px_rgba(2,6,23,0.32)] backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:border-blue-400/20 hover:shadow-[0_24px_50px_rgba(2,6,23,0.44),0_0_24px_rgba(59,130,246,0.08)] md:p-6">
+    <article className="group h-full rounded-[28px] border border-white/10 bg-[linear-gradient(180deg,rgb(var(--theme-overlay)/0.06),rgb(var(--theme-overlay)/0.03))] p-5 shadow-[0_18px_40px_rgb(var(--theme-shadow)/0.32)] backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:border-blue-400/20 hover:shadow-[0_24px_50px_rgb(var(--theme-shadow)/0.44),0_0_24px_rgb(var(--blue-500)/0.08)] md:p-6">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.06] text-sm font-bold text-white">
@@ -153,7 +153,7 @@ function ReviewCard({
 
       <div className="mt-5 flex items-center justify-between gap-4">
         <div className="flex items-center gap-2">
-          <div className="flex gap-1 text-[#fbbc04]">
+          <div className="flex gap-1 text-orange-300">
             {Array.from({ length: 5 }).map((_, index) => (
               <StarIcon key={index} />
             ))}
@@ -214,3 +214,5 @@ function ArrowRightIcon() {
     </svg>
   );
 }
+
+

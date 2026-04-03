@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact-form";
 import { SITE } from "@/lib/site-data";
@@ -15,7 +16,19 @@ export default function ContactPage() {
         <h1 className="text-4xl font-bold text-white md:text-5xl">Contact Us</h1>
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           <div className="panel space-y-4">
-            <p className="text-lg font-semibold text-white">Contact Matrix</p>
+            <div className="flex items-center gap-3">
+              <Image
+                src="/images/logo.svg"
+                alt={`${SITE.name} logo`}
+                width={240}
+                height={84}
+                className="h-12 w-auto"
+              />
+              <div>
+                <p className="text-lg font-semibold text-white">{SITE.name}</p>
+                <p className="text-xs uppercase tracking-[0.16em] text-slate-400">{SITE.tagline}</p>
+              </div>
+            </div>
             <a href={SITE.phoneHref} className="block text-slate-200 hover:text-white">
               📞 {SITE.phoneDisplay}
             </a>
@@ -25,6 +38,7 @@ export default function ContactPage() {
             <a href={`mailto:${SITE.email}`} className="block text-slate-200 hover:text-white">
               ✉️ {SITE.email}
             </a>
+            <p className="text-slate-300">📍 {SITE.addressLine}</p>
             <p className="text-slate-300">
               Monday - Saturday: 8:00 AM - 6:00 PM
               <br />
@@ -45,3 +59,5 @@ export default function ContactPage() {
     </section>
   );
 }
+
+

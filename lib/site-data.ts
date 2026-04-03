@@ -1,10 +1,14 @@
 export const SITE = {
   name: "Precision Auto Care",
-  domain: "https://www.yourdomain.com",
-  phoneDisplay: "07000 000000",
-  phoneHref: "tel:+447000000000",
-  whatsappHref: "https://wa.me/447000000000",
-  email: "bookings@yourdomain.com"
+  legalName: "Precision Auto Care",
+  tagline: "Mobile Mechanics & Detailing",
+  domain: "https://www.precision-auto-care.co.uk",
+  phoneDisplay: "+44 735 626 2392",
+  phoneHref: "tel:+447356262392",
+  phoneE164: "+447356262392",
+  whatsappHref: "https://wa.me/447356262392",
+  email: "info@precision-auto-care.co.uk",
+  addressLine: "Coventry & West Midlands, United Kingdom"
 };
 
 export const serviceCities = [
